@@ -4,8 +4,15 @@ export const FeedbackOptions = ({ options, onLeaveFeeback }) => {
   return (
     <div>
       {Object.keys(options).map(key => (
-        <button type="button" key={key} id={key} onClick={onLeaveFeeback}>
-          {key[0].toUpperCase() + key.slice(1)}
+        <button
+          type="button"
+          key={key}
+          onClick={() => onLeaveFeeback(key)}
+          style={{
+            textTransform: 'capitalize',
+          }}
+        >
+          {key}
         </button>
       ))}
     </div>
