@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section } from './components/Section';
+import { Section } from './components/Section/Section';
 import { FeedbackOptions } from './components/FeedbackOptions';
 import { Statistics } from './components/Statistics';
 import { Notification } from './components/Notification';
@@ -54,13 +54,14 @@ export class App extends React.Component {
     return (
       <div
         style={{
-          height: '100vh',
+          height: '100%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: 24,
           color: '#010101',
+          margin: '50px',
         }}
       >
         <Section title="Please leave your feedback">
