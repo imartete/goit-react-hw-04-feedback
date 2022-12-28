@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 export const FeedbackOptions = ({ options, onLeaveFeeback }) => {
   return (
     <div>
-      {Object.keys(options).map(key => (
+      {Object.keys(options).map(option => (
         <button
           type="button"
-          key={key}
-          onClick={() => onLeaveFeeback(key)}
+          key={option}
+          onClick={() => onLeaveFeeback(option)}
           style={{
             textTransform: 'capitalize',
           }}
         >
-          {key}
+          {option}
         </button>
       ))}
     </div>
