@@ -6,22 +6,22 @@ import { Statistics } from './components/Statistics';
 import { Notification } from './components/Notification';
 
 export function App() {
-  const [options, setOptions] = useState({ good: 0, neutral: 0, bad: 0 });
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
   function onLeaveFeeback(key) {
-    setOptions(prevOptions => ({
-      ...prevOptions,
-      [key]: prevOptions[key] + 1,
-    }));
+    if (key === 'good') setGood(prev => prev + 1);
+    if (key === 'neutral') setNeutral(prev => prev + 1);
+    if (key === 'bad') setBad(prev => prev + 1);
   }
 
   function countTotalFeedback() {
-    const { good, neutral, bad } = options;
     return good + neutral + bad;
   }
 
   function countPositiveFeedbackPercentage() {
-    return parseInt((options.good / countTotalFeedback()) * 100) || 0;
+    return parseInt((good / countTotalFeedback()) * 100) || 0;
   }
 
   const total = countTotalFeedback();
@@ -40,14 +40,17 @@ export function App() {
       }}
     >
       <Section title="Please leave your feedback">
-        <FeedbackOptions options={options} onLeaveFeeback={onLeaveFeeback} />
+        <FeedbackOptions
+          options={{ good, neutral, bad }}
+          onLeaveFeeback={onLeaveFeeback}
+        />
       </Section>
       <Section title="Statistics">
         {total ? (
           <Statistics
-            good={options.good}
-            bad={options.bad}
-            neutral={options.neutral}
+            good={good}
+            bad={bad}
+            neutral={neutral}
             total={total}
             positivePercentage={countPositiveFeedbackPercentage()}
           />
